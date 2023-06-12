@@ -14,7 +14,7 @@ B1. Để lấy được khoá DKIM bạn hãy SSH vào Server Mail sau đó ch�
 
 **Thay my-domain thành domain của mình**
 
-su zimbra
+`su zimbra`
 
 /opt/zimbra/libexec/zmdkimkeyutil -a -d my-domain
 
