@@ -5,6 +5,7 @@ B1. Cấu hình SPF:
 + Trên trang quản lý DNS tạo 1 record dạng TXT : 
 
 VD:
+
 Type	Name	                Content/Value                           TTL
 
 TXT	@ hoặc tên miền	        v=spf1 ip4:Your-IP-WAN mx ~all	        Auto
