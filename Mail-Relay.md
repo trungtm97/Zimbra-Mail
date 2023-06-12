@@ -16,11 +16,11 @@ B1. Để lấy được khoá DKIM bạn hãy SSH vào Server Mail sau đó ch�
 
 `su zimbra`
 
-/opt/zimbra/libexec/zmdkimkeyutil -a -d my-domain
+`/opt/zimbra/libexec/zmdkimkeyutil -a -d my-domain`
 
 Nếu đã có DKIM rồi mà bạn muốn xem lại thì dùng lệnh sau
 
-/opt/zimbra/libexec/zmdkimkeyutil -q -d my-domain
+`/opt/zimbra/libexec/zmdkimkeyutil -q -d my-domain`
 
 ![image](https://github.com/trungtm97/Zimbra-Mail/assets/134046186/3615b7f7-25b9-46a4-8140-b9d92ea45208)
 
@@ -64,11 +64,11 @@ Truy cập website brevo (dashboard) -> Transactional -> Settings -> Configurati
 
 ![image](https://github.com/trungtm97/Zimbra-Mail/assets/134046186/714ca159-6c81-44d4-aab2-831f9a1b7fae)
 
-su zimbra
+`su zimbra`
 
-zmprov mcf zimbraMtaRelayHost server-mail-relay
+`zmprov mcf zimbraMtaRelayHost server-mail-relay`
 
-Bây giờ bạn khởi động lại dịch vụ mail zimbra bằng lệnh zmcontrol restart để áp dụng các thay đổi
+Bây giờ bạn khởi động lại dịch vụ mail zimbra bằng lệnh `zmcontrol restart` để áp dụng các thay đổi
 
 [zimbra@mail ~]$ zmcontrol restart
 
@@ -162,36 +162,36 @@ Starting imapd...Done.
 
 Khi không cần sử dụng nữa, bạn chỉ đơn giản thực hiện:
 
-zmprov mcf -zimbraMtaRelayHost server-mail-relay
+`zmprov mcf -zimbraMtaRelayHost server-mail-relay`
 
 **B3. Thiết lặp thep user & password**
 
-su zimbra
+`su zimbra`
 
-echo server-mail-relay youraccount@domain.com:your_password > /opt/zimbra/conf/relay_password (account & password theo thông tin trên brevo)
+`echo server-mail-relay youraccount@domain.com:your_password > /opt/zimbra/conf/relay_password` (account & password theo thông tin trên brevo)
 
-postmap /opt/zimbra/conf/relay_password
+`postmap /opt/zimbra/conf/relay_password`
 
 **Kiểm tra lại xem thông tin account & password**
 
-postmap -q server-mail-relay /opt/zimbra/conf/relay_password
+`postmap -q server-mail-relay /opt/zimbra/conf/relay_password`
 
 **Cấu hình zimbra sử dụng username và password này**
 
-zmprov mcf zimbraMtaSmtpSaslPasswordMaps lmdb:/opt/zimbra/conf/relay_password #giá trị mặc định là noplaintext,noanonymous
+`zmprov mcf zimbraMtaSmtpSaslPasswordMaps lmdb:/opt/zimbra/conf/relay_password` #giá trị mặc định là noplaintext,noanonymous
 
-zmprov mcf zimbraMtaSmtpSaslAuthEnable yes #giá trị mặc định là no
+`zmprov mcf zimbraMtaSmtpSaslAuthEnable yes` #giá trị mặc định là no
 
-zmprov mcf zimbraMtaSmtpCnameOverridesServername no #giá trị mặc định là no
+`zmprov mcf zimbraMtaSmtpCnameOverridesServername no` #giá trị mặc định là no
 
-zmprov mcf zimbraMtaSmtpTlsSecurityLevel may #giá trị mặc định là may
+`zmprov mcf zimbraMtaSmtpTlsSecurityLevel may` #giá trị mặc định là may
 
-zmprov mcf zimbraMtaSmtpSaslSecurityOptions noanonymous #giá trị mặc định là noplaintext,noanonymous
+`zmprov mcf zimbraMtaSmtpSaslSecurityOptions noanonymous` #giá trị mặc định là noplaintext,noanonymous
 
 **Thiết lập relay Host**
 
-zmprov mcf zimbraMtaRelayHost server-mail-relay
+`zmprov mcf zimbraMtaRelayHost server-mail-relay`
 
 **Tiến hành reload lại mta**
 
- zmmtactl reload
+ `zmmtactl reload`
