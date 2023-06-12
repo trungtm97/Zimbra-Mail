@@ -6,6 +6,7 @@ B1. Cấu hình SPF:
 
 VD:
 Type	Name	                Content/Value                           TTL
+
 TXT	@ hoặc tên miền	        v=spf1 ip4:Your-IP-WAN mx ~all	        Auto
 
 B2. Cấu hình DKIM:
